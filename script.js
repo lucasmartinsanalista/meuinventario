@@ -35,6 +35,7 @@ function loginUser(e) {
 
     if (validUser) {
         alert(`Bem-vindo, ${username}!`);
+        sessionStorage.setItem('currentUser', username); // Armazena o usuário logado
         showInventorySection();
     } else {
         alert('Usuário ou senha incorretos.');
@@ -53,13 +54,22 @@ function addInventoryItem(e) {
 
     const itemName = document.getElementById('item-name').value.trim();
     const itemQuantity = document.getElementById('item-quantity').value.trim();
+    const currentUser = sessionStorage.getItem('currentUser'); // Recupera o usuário logado
+    const timestamp = new Date().toLocaleString();
 
     if (itemName && itemQuantity) {
-        const inventoryList = document.getElementById('inventory-list');
-        const listItem = document.createElement('li');
-        listItem.textContent = `${itemName} - Quantidade: ${itemQuantity}`;
-        inventoryList.appendChild(listItem);
+        const inventoryData = JSON.parse(localStorage.getItem('inventory')) || [];
 
+        inventoryData.push({
+            material: itemName,
+            quantity: itemQuantity,
+            user: currentUser || 'Desconhecido',
+            timestamp
+        });
+
+        localStorage.setItem('inventory', JSON.stringify(inventoryData));
+
+        alert('Material registrado com sucesso!');
         document.getElementById('inventory-form').reset();
     } else {
         alert('Preencha todos os campos do inventário.');
