@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório de Inventário</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Relatório de Inventário</h1>
+
+        <!-- Filtro de Pesquisa -->
+        <div class="form-container">
+            <label for="search-material">Pesquisar Material:</label>
+            <input type="text" id="search-material" placeholder="Digite o nome do material...">
+        </div>
+
+        <!-- Tabela de Relatório -->
+        <table id="report-table">
+            <thead>
+                <tr>
+                    <th>Nome do Material</th>
+                    <th>Quantidade</th>
+                    <th>Usuário</th>
+                    <th>Data e Hora</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Linhas do relatório serão adicionadas dinamicamente -->
+            </tbody>
+        </table>
+
+        <!-- Botão de Exportar para Excel -->
+        <button id="export-button">Exportar para Excel</button>
+    </div>
+
+    <!-- Inclusão da biblioteca XLSX para exportação -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="report.js"></script>
+</body>
+</html>
